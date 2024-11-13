@@ -10,7 +10,7 @@ import java.util.List;
 public interface CityRepository extends JpaRepository<City, Long> {
 
     @Query("select c from City c where name like '%:query%' or countryCode like '%:query%' or fipsCode like '%:query%' or countyCode like '%:query%'")
-    List<City> findDataWithScore(
+    List<City> findDataByQuery(
             @Param("query") String query
     );
 }

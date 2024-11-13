@@ -23,13 +23,12 @@ public class CityService{
             Double longitude
     ) {
         List<City> data;
-        data = cityRepository.findAll();
+        data = cityRepository.findDataByQuery(query);
 
         List<CityDto> dtoData = new ArrayList<>();
 
         for(City city : data){
             CityDto dto = cityConverter.toDto(city);
-
             //For getting score data
             dto.setScore(getSuggestionScore(query, latitude, longitude, dto));
             dtoData.add(dto);
@@ -50,10 +49,9 @@ public class CityService{
         double countyCodePenalty = getQueryLengthPenaltyScore(lengthOfQuery, dto.getName().length());
 
         double totalQueryLengthDiffPenalty = namePenalty + countryCodePenalty + fipsCodePenalty + countyCodePenalty;
+        double distanceDiffPenalty = getDistanceDifferencePenalty(latitude, longitude, dto);
+        baseScore = baseScore - (totalQueryLengthDiffPenalty + distanceDiffPenalty);
 
-
-
-        baseScore = baseScore - totalQueryLengthDiffPenalty;
         return (float) baseScore / 100;
     }
 
@@ -62,18 +60,23 @@ public class CityService{
         if(lengthOfQuery == attributeLength){
             return 0;
         }
-        double baseLengthDifferencePenalty = 0.5;
+        double baseScorePenalty = 0.5;
         int lengthDifference = Math.abs(lengthOfQuery - attributeLength);
-        return baseLengthDifferencePenalty * lengthDifference;
+        return baseScorePenalty * lengthDifference;
     }
 
-    double getDistanceDifference(Double latitude, Double longitude, CityDto dto){
-        if(Objects.equals(latitude, longitude)){
+    //Get score penalty base on difference between latitude and longitude value
+    double getDistanceDifferencePenalty(Double latitude, Double longitude, CityDto dto){
+        if(Objects.isNull(latitude) || Objects.isNull(longitude)){
             return 0;
         }
-        double baseLengthDifferencePenalty = 0.5;
-        int lengthDifference = 0;
-        return baseLengthDifferencePenalty * lengthDifference;
+        double baseScorePenalty = 1.5;
+
+        double latitudeDifference = Math.abs(latitude - dto.getLatitude());
+        double longitudeDifference = Math.abs(longitude - dto.getLongitude());
+        double totalDifference = latitudeDifference + longitudeDifference;
+
+        return baseScorePenalty * totalDifference;
     }
 
 }
