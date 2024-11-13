@@ -1,14 +1,10 @@
-package com.ryan.lacakio_test.Model;
+package com.ryan.lacakio_test.Dto;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
-public class City {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CityDto {
     private Long id;
 
     private String name;
@@ -20,11 +16,13 @@ public class City {
     private Double latitude;
     private Double longitude;
 
-    public City(){}
+    private Float score;
 
-    public City(String name, Long id, String countryCode, String fipsCode, String countyCode, Double latitude, Double longitude) {
-        this.name = name;
+    public CityDto(){}
+
+    public CityDto(Long id, String name, String countryCode, String fipsCode, String countyCode, Double latitude, Double longitude) {
         this.id = id;
+        this.name = name;
         this.countryCode = countryCode;
         this.fipsCode = fipsCode;
         this.countyCode = countyCode;
@@ -86,5 +84,13 @@ public class City {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
     }
 }

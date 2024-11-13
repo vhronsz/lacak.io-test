@@ -1,5 +1,6 @@
 package com.ryan.lacakio_test.Controller;
 
+import com.ryan.lacakio_test.Dto.CityDto;
 import com.ryan.lacakio_test.Dto.ResponseDto;
 import com.ryan.lacakio_test.Model.City;
 import com.ryan.lacakio_test.Service.CityService;
@@ -18,14 +19,14 @@ public class CityController {
     CityService cityService;
 
     @GetMapping("/suggestions")
-    public ResponseDto<List<City>> test(
+    public ResponseDto<List<CityDto>> test(
             @RequestParam("q") String query,
             @RequestParam("latitude") @Nullable Double latitude,
             @RequestParam("longitude") @Nullable Double longitude
     ){
-        ResponseDto<List<City>> response = new ResponseDto<>();
+        ResponseDto<List<CityDto>> response = new ResponseDto<>();
         try {
-            List<City> data = cityService.suggestion();
+            List<CityDto> data = cityService.suggestion(query, latitude, longitude);
             response.setData(data);
             response.setStatus(true);
             response.setMessage("Showing Suggestion");
