@@ -15,7 +15,7 @@ import java.util.Objects;
 public class CityService{
     @Autowired
     CityRepository cityRepository;
-    CityConverter cityConverter;
+    CityConverter cityConverter = new CityConverter();
 
     public List<CityDto> suggestion(
             String query,
@@ -23,7 +23,11 @@ public class CityService{
             Double longitude
     ) {
         List<City> data;
-        data = cityRepository.findDataByQuery(query);
+
+        //Bug - query not returning any thing
+//        data = cityRepository.findDataByQuery();
+        data = cityRepository.findAll();
+        System.out.println(data.size());
 
         List<CityDto> dtoData = new ArrayList<>();
 
