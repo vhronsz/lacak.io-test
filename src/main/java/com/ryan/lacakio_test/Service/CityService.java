@@ -24,8 +24,9 @@ public class CityService{
     ) {
         List<City> data;
 
-        //Bug - query not returning any thing
-//        data = cityRepository.findDataByQuery();
+        //Bug - query not returning any thing -
+        //TODO query on the repository
+//        data = cityRepository.findDataByQuery(query);
         data = cityRepository.findAll();
         System.out.println(data.size());
 
