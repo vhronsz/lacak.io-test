@@ -1,23 +1,27 @@
 package com.ryan.lacakio_test.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "cities")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "country_code")
     private String countryCode;
+    @Column(name = "fips_code")
     private String fipsCode;
+    @Column(name = "county_code")
     private String countyCode;
 
+    @Column(name = "latitude")
     private Double latitude;
+    @Column(name = "longitude")
     private Double longitude;
 
     public City(){}

@@ -16,7 +16,7 @@ public class CityDto {
     private Double latitude;
     private Double longitude;
 
-    private Float score;
+    private double score;
 
     public CityDto(){}
 
@@ -86,11 +86,11 @@ public class CityDto {
         this.longitude = longitude;
     }
 
-    public Float getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(Float score) {
+    public void setScore(double score) {
         this.score = score;
     }
 }

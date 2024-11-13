@@ -11,8 +11,6 @@ public interface CityRepository extends JpaRepository<City, Long> {
 
     @Query("select c from City c where name like '%:query%' or countryCode like '%:query%' or fipsCode like '%:query%' or countyCode like '%:query%'")
     List<City> findDataWithScore(
-            @Param("query") String query,
-            @Param("latitude") Double latitude,
-            @Param("longitude") Double longitude
+            @Param("query") String query
     );
 }
