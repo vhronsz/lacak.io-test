@@ -20,22 +20,23 @@ public class CityService{
             String query,
             Double latitude,
             Double longitude
-    ){
-        List<City> data;
-
-        try {
-           data = cityRepository.findDataWithScore(query, latitude, longitude);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+    ) throws Exception {
+        try{
+            throw new Exception("asdasd");
+        }catch (Exception e){
+            throw e;
         }
-
-        List<CityDto> dtoData = new ArrayList<>();
-
-        for(City city : data){
-            CityDto dto = cityConverter.toDto(city);
-            dtoData.add(dto);
-        }
-        return dtoData;
+//        List<City> data;
+//
+//        data = cityRepository.findDataWithScore(query, latitude, longitude);
+//
+//        List<CityDto> dtoData = new ArrayList<>();
+//
+//        for(City city : data){
+//            CityDto dto = cityConverter.toDto(city);
+//            dtoData.add(dto);
+//        }
+//        return dtoData;
     }
 
 }

@@ -6,6 +6,8 @@ import com.ryan.lacakio_test.Model.City;
 import com.ryan.lacakio_test.Service.CityService;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ public class CityController {
     CityService cityService;
 
     @GetMapping("/suggestions")
-    public ResponseDto<List<CityDto>> test(
+    public ResponseEntity<ResponseDto<List<CityDto>>> test(
             @RequestParam("q") String query,
             @RequestParam("latitude") @Nullable Double latitude,
             @RequestParam("longitude") @Nullable Double longitude
@@ -33,7 +35,8 @@ public class CityController {
         } catch (Exception e) {
             response.setStatus(false);
             response.setMessage(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
-        return response;
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,6 +1,9 @@
 package com.ryan.lacakio_test.Dto;
 
-public class ResponseDto<T> {
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+
+public class ResponseDto<T>  {
     private boolean status;
     private String message;
     private T data;
