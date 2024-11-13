@@ -31,7 +31,6 @@ public class CityController {
             List<CityDto> data = cityService.suggestion(query, latitude, longitude);
             response.setData(data);
             response.setStatus(true);
-            response.setMessage("Showing Suggestion");
         } catch (Exception e) {
             response.setStatus(false);
             response.setMessage(e.getMessage());
