@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ryan</groupId>
 	<artifactId>lacakio-test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>lacakio-test</name>
 	<description>Coding test for lacak.io</description>
 	<url/>
@@ -59,5 +59,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<packaging>jar</packaging>
 </project>
