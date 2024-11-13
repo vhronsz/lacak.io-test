@@ -78,5 +78,4 @@ public class CityService{
 
         return baseScorePenalty * totalDifference;
     }
-
 }
